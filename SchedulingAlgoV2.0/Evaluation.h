@@ -1,0 +1,6 @@
+#ifndef UNTITLED_EVALUATION_H
+#define UNTITLED_EVALUATION_H
+
+void EvaluateAlgo();
+
+#endif//UNTITLED_EVALUATION_H
