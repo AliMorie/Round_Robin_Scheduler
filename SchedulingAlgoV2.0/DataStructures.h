@@ -15,8 +15,8 @@ typedef struct
 {
     int processID; // An integer representing the ID of the process.
     int arrivalTime; // An integer representing the arrival time of the process.
-    int CPUTime; //  An integer representing the CPU time required by the process.
-    int diskTime; //  An integer representing the disk time required by the process.
+    int CPUTime; // An integer representing the CPU time required by the process.
+    int diskTime; // An integer representing the disk time required by the process.
     int remainingCPUTime; // An integer representing the remaining CPU time of the process.
     int turnAroundTime; // An integer representing the turnaround time of the process.
     int waitingTime; // An integer representing the waiting time of the process.

@@ -8,21 +8,26 @@
 #include "Scheduler.h"
 #include "Helper.h"
 
-int main(int argc, char* argv[])
+int main(/*int argc, char* argv[]*/)
 {
     // Check if the correct number of command-line arguments is provided
-    if (argc != 5)
-    {
-        printf("Invalid number of arguments!\n");
-        printf("Usage: ./simulator <number_of_processes> <input_file> <quantum> <output_trace_file>\n");
-        return 1;
-    }
+    // if (argc != 5)
+    //{
+    //    printf("Invalid number of arguments!\n");
+    //    printf("Usage: ./simulator <number_of_processes> <input_file> <quantum> <output_trace_file>\n");
+    //    return 1;
+    //}
 
-    // Parse command-line arguments
-    const int numProcesses = atoi(argv[1]);
-    const char* inputFileName = argv[2];
-    const int quantum = atoi(argv[3]);
-    const char* outputFileName = argv[4];
+    //// Parse command-line arguments
+    // const int numProcesses = atoi(argv[1]);
+    // const char* inputFileName = argv[2];
+    // const int quantum = atoi(argv[3]);
+    // const char* outputFileName = argv[4];
+
+    const int numProcesses = 10;
+    const char* inputFileName = "input.txt";
+    const int quantum = 3;
+    const char* outputFileName = "output.csv";
 
     // Seed the random number generator
     srand(time(NULL));
