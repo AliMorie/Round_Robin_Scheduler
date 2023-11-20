@@ -3,20 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void enqueue(Queue* queue, Process_Struct process)
-{
-    queue->processes[queue->rear] = process;
-    queue->rear++;
-    queue->size++;
-}
+#include "Helper.h"
 
-Process_Struct dequeue(Queue* queue)
+int minimum(int a, int b)
 {
-    const Process_Struct process = queue->processes[queue->front];
-    queue->front++;
-    queue->size--;
-
-    return process;
+    return (a < b) ? a : b;
 }
 
 void enqueueCPU(ProcessSimulator* simulator, Process_Struct process)
@@ -49,7 +40,7 @@ void runCPUProcess(ProcessSimulator* simulator, FILE* outputFile)
     Process_Struct currentProcess = dequeue(&simulator->CPUDevice);
 
     // set the time slice that the process will spend in the processor.
-    const int timeSlice = min(simulator->quantum, currentProcess.remainingCPUTime);
+    const int timeSlice = minimum(simulator->quantum, currentProcess.remainingCPUTime);
 
     // Check if process has finished all of its CPU time.
     if (currentProcess.remainingCPUTime <= 0)
@@ -154,6 +145,6 @@ void simulateProcesses(ProcessSimulator* simulator, const char* outputTraceFile)
         simulator->clock++;
     }
 
-    fclose(traceFile);
+    (void)fclose(traceFile);
     printf("Output file generated successfully.\n");
 }

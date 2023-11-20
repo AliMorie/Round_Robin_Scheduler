@@ -15,7 +15,7 @@ int readProcessesData(FILE* sourceFile, Process_Struct* processes, const int num
 
     for (int i = 0; i < numProcesses; i++)
     {
-        (void)fscanf_s(
+        (void)fscanf(
             sourceFile,
             "%d %d %d %d %d",
             &processes[i].processID,
@@ -72,4 +72,20 @@ void clearFile(const char fileName[15])
     }
 
     (void)fclose(file);
+}
+
+void enqueue(Queue* queue, Process_Struct process)
+{
+    queue->processes[queue->rear] = process;
+    queue->rear++;
+    queue->size++;
+}
+
+Process_Struct dequeue(Queue* queue)
+{
+    const Process_Struct process = queue->processes[queue->front];
+    queue->front++;
+    queue->size--;
+
+    return process;
 }
