@@ -1,3 +1,5 @@
+/// @file Helper.h
+
 #ifndef HELPER_H
 #define HELPER_H
 
@@ -17,11 +19,11 @@
 /// with the read values. Each line in the source file represents a process and is expected to
 /// follow the format: "processID fileID arrivalTime CPUTime diskTime".
 ///
-/// \param sourceFile A pointer to the source file from which the process data will be read.
-/// \param processes An array of Process_Struct where the read process data will be stored.
-/// \param numProcesses The number of processes to read from the file.
+/// @param sourceFile A pointer to the source file from which the process data will be read.
+/// @param processes An array of Process_Struct where the read process data will be stored.
+/// @param numProcesses The number of processes to read from the file.
 ///
-/// \return 1 if the reading and populating process was successful, 0 if there was a memory allocation failure
+/// @return 1 if the reading and populating process was successful, 0 if there was a memory allocation failure
 ///         or an issue with closing the source file.
 int readProcessesData(FILE* sourceFile, Process_Struct* processes, const int numProcesses);
 
@@ -30,8 +32,8 @@ int readProcessesData(FILE* sourceFile, Process_Struct* processes, const int num
 /// This function initializes a Queue structure by allocating memory for the processes array
 /// and setting the front, rear, and size values.
 ///
-/// \param queue A pointer to the Queue structure to be initialized.
-/// \param numProcesses The number of processes in the queue.
+/// @param queue A pointer to the Queue structure to be initialized.
+/// @param numProcesses The number of processes in the queue.
 void initQueue(Queue* queue, int numProcesses);
 
 
@@ -40,9 +42,9 @@ void initQueue(Queue* queue, int numProcesses);
 /// This function enqueues the processes from an array of Process_Struct into the arrival queue
 /// of a ProcessSimulator. The processes are added to the end of the arrival queue.
 ///
-/// \param simulator A pointer to the ProcessSimulator.
-/// \param processes An array of Process_Struct to be enqueued.
-/// \param numProcesses The number of processes in the array.
+/// @param simulator A pointer to the ProcessSimulator.
+/// @param processes An array of Process_Struct to be enqueued.
+/// @param numProcesses The number of processes in the array.
 void enqueueArrivalQueue(ProcessSimulator* simulator, const Process_Struct* processes, const int numProcesses);
 
 
@@ -51,10 +53,10 @@ void enqueueArrivalQueue(ProcessSimulator* simulator, const Process_Struct* proc
 /// This function creates a ProcessSimulator instance by initializing the various queues and
 /// setting the clock and quantum values.
 ///
-/// \param simulator A pointer to the ProcessSimulator to be created.
-/// \param processes An array of Process_Struct representing the processes.
-/// \param numProcesses The number of processes in the array.
-/// \param quantum The quantum value for the simulator.
+/// @param simulator A pointer to the ProcessSimulator to be created.
+/// @param processes An array of Process_Struct representing the processes.
+/// @param numProcesses The number of processes in the array.
+/// @param quantum The quantum value for the simulator.
 void createSimulator(
     ProcessSimulator* simulator,
     const Process_Struct* processes,
@@ -66,7 +68,7 @@ void createSimulator(
 ///
 /// This function clears the content of a file by opening it in write mode and immediately closing it.
 ///
-/// \param fileName The name of the file to be cleared.
+/// @param fileName The name of the file to be cleared.
 void clearFile(const char fileName[15]);
 
 
@@ -74,8 +76,8 @@ void clearFile(const char fileName[15]);
 ///
 /// This function enqueues a process into a queue by adding it to the end of the queue.
 ///
-/// \param queue A pointer to the Queue.
-/// \param process The Process_Struct to be enqueued.
+/// @param queue A pointer to the Queue.
+/// @param process The Process_Struct to be enqueued.
 void enqueue(Queue* queue, Process_Struct process);
 
 
@@ -83,8 +85,8 @@ void enqueue(Queue* queue, Process_Struct process);
 ///
 /// This function dequeues a process from a queue by removing and returning the process at the front of the queue.
 ///
-/// \param queue A pointer to the Queue.
-/// \return The dequeued Process_Struct.
+/// @param queue A pointer to the Queue.
+/// @return The dequeued Process_Struct.
 Process_Struct dequeue(Queue* queue);
 ;
 

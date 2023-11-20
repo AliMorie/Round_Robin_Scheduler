@@ -1,3 +1,5 @@
+/// @file Evaluation.h
+
 #ifndef UNTITLED_EVALUATION_H
 #define UNTITLED_EVALUATION_H
 
@@ -40,7 +42,7 @@
 /// the results. The results are stored in the log file "log.csv" in CSV format, with each row representing a
 /// combination of quantum value, trace file ID, turnaround time, and waiting time.
 ///
-/// Note: The function assumes that the necessary functions (`generateProcessesData`, `clearFile`, `readProcessesData`,
+/// @note The function assumes that the necessary functions (`generateProcessesData`, `clearFile`, `readProcessesData`,
 /// `createSimulator`, `simulateProcesses`) are defined and implemented correctly.
 void EvaluateAlgo();
 

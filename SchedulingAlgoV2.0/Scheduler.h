@@ -1,3 +1,5 @@
+/// @file Scheduler.h
+
 #ifndef SCHEDULER_H
 #define SCHEDULER_H
 
@@ -8,8 +10,8 @@
 /// This function runs a CPU process in the ProcessSimulator by dequeuing a process from the CPU device queue,
 /// updating its time slice and state based on certain conditions, and logging process metrics to the output file.
 ///
-/// \param simulator A pointer to the ProcessSimulator.
-/// \param outputFile A pointer to the output file where process metrics will be logged.
+/// @param simulator A pointer to the ProcessSimulator.
+/// @param outputFile A pointer to the output file where process metrics will be logged.
 ///
 /// The `runCPUProcess()` function performs the following steps:
 /// 1. Dequeues a process from the CPU device queue of the ProcessSimulator.
@@ -32,7 +34,7 @@
 ///     - Enqueues the process into the disk device queue.
 /// 6. Advances the clock of the simulator by the timeSlice value.
 ///
-/// Note: The runCPUProcess() function assumes that the queues (CPUDevice, CPUScheduler, DiskScheduler, DiskDevice)
+/// @note The runCPUProcess() function assumes that the queues (CPUDevice, CPUScheduler, DiskScheduler, DiskDevice)
 /// of the ProcessSimulator have been initialized properly.
 void runCPUProcess(ProcessSimulator* simulator, FILE* outputFile);
 /// Simulates the execution of processes in the ProcessSimulator.
@@ -41,8 +43,8 @@ void runCPUProcess(ProcessSimulator* simulator, FILE* outputFile);
 /// running processes on the CPU and Disk devices, scheduling processes from the arrival queue and CPU scheduler,
 /// and updating the clock time. Process metrics are logged to the output trace file.
 ///
-/// \param simulator A pointer to the ProcessSimulator.
-/// \param outputTraceFile The output trace file path. If NULL, "log.csv" is used as the default file name.
+/// @param simulator A pointer to the ProcessSimulator.
+/// @param outputTraceFile The output trace file path. If NULL, "log.csv" is used as the default file name.
 ///
 /// The `simulateProcesses()` function performs the following steps:
 /// 1. Determines the output trace file name. If the `outputTraceFile` parameter is NULL, "log.csv" is used as the
@@ -75,14 +77,14 @@ void simulateProcesses(ProcessSimulator* simulator, const char* outputTraceFile)
 /// This function runs a disk process in the ProcessSimulator by dequeuing a process from the disk device queue,
 /// updating its state and disk time, advancing the clock, and enqueuing it to the CPU device queue.
 ///
-/// \param simulator A pointer to the ProcessSimulator.
+/// @param simulator A pointer to the ProcessSimulator.
 void runDiskProcess(ProcessSimulator* simulator);
 
 /// This function compares two integers and returns the smaller of the two.
 ///
-/// \param a The first integer.
-/// \param b The second integer.
-/// \return The minimum value between a and b.
+/// @param a The first integer.
+/// @param b The second integer.
+/// @return The minimum value between a and b.
 int minimum(int a, int b);
 
 /// Enqueues a process into the CPU device queue of a ProcessSimulator.
@@ -90,8 +92,8 @@ int minimum(int a, int b);
 /// This function enqueues a process into the CPU device queue of a ProcessSimulator
 /// by adding it to the end of the queue.
 ///
-/// \param simulator A pointer to the ProcessSimulator.
-/// \param process The Process_Struct to be enqueued.
+/// @param simulator A pointer to the ProcessSimulator.
+/// @param process The Process_Struct to be enqueued.
 void enqueueCPU(ProcessSimulator* simulator, Process_Struct process);
 
 /// Enqueues a process into the disk device queue of a ProcessSimulator.
@@ -99,8 +101,8 @@ void enqueueCPU(ProcessSimulator* simulator, Process_Struct process);
 /// This function enqueues a process into the disk device queue of a ProcessSimulator
 /// by adding it to the end of the queue.
 ///
-/// \param simulator A pointer to the ProcessSimulator.
-/// \param process The Process_Struct to be enqueued.
+/// @param simulator A pointer to the ProcessSimulator.
+/// @param process The Process_Struct to be enqueued.
 void enqueueDisk(ProcessSimulator* simulator, Process_Struct process);
 
 /// Schedules a process to the CPU scheduler queue of a ProcessSimulator.
@@ -108,8 +110,8 @@ void enqueueDisk(ProcessSimulator* simulator, Process_Struct process);
 /// This function schedules a process to the CPU scheduler queue of a ProcessSimulator
 /// by adding it to the end of the queue.
 ///
-/// \param simulator A pointer to the ProcessSimulator.
-/// \param process The Process_Struct to be scheduled.
+/// @param simulator A pointer to the ProcessSimulator.
+/// @param process The Process_Struct to be scheduled.
 void scheduleCPUProcess(ProcessSimulator* simulator, Process_Struct process);
 
 /// Schedules a process to the disk scheduler queue of a ProcessSimulator.
@@ -117,8 +119,8 @@ void scheduleCPUProcess(ProcessSimulator* simulator, Process_Struct process);
 /// This function schedules a process to the disk scheduler queue of a ProcessSimulator
 /// by adding it to the end of the queue.
 ///
-/// \param simulator A pointer to the ProcessSimulator.
-/// \param process The Process_Struct to be scheduled.
+/// @param simulator A pointer to the ProcessSimulator.
+/// @param process The Process_Struct to be scheduled.
 void scheduleDiskProcess(ProcessSimulator* simulator, Process_Struct process);
 
 /// Rounds a double value to the nearest integer.
@@ -126,7 +128,7 @@ void scheduleDiskProcess(ProcessSimulator* simulator, Process_Struct process);
 /// This function rounds a double value to the nearest integer using the standard rounding rule.
 /// For example, 2.3 would be rounded to 2, and 2.7 would be rounded to 3.
 ///
-/// \param value The double value to be rounded.
-/// \return The rounded integer value.
+/// @param value The double value to be rounded.
+/// @return The rounded integer value.
 int roundTime(double value);
 #endif // SCHEDULER_H
