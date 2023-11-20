@@ -1,4 +1,8 @@
 /// @file DataStructures.h
+/// @brief Declarations of structures and enumerations for process scheduling simulation.
+/// @details The "DataStructure.h" header file defines the data structures and enumerations used in a process
+/// scheduling simulation.
+///	@date 	11/20/2023
 
 #ifndef DATA_STRUCTURE_H
 #define DATA_STRUCTURE_H

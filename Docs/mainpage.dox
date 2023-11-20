@@ -1,0 +1,53 @@
+/*! @mainpage Process Scheduling Simulator
+	
+	@section Stuents
+	____
+	@author **Sarah Taleb Alhumaidi** <br>
+			Student ID: `2400664`
+	@author **Hasnah Ahmed Albarakati** <br>
+			Student ID: `2400386`
+	@date 	11/20/2023
+
+	@section Overview
+	____
+The Process Scheduling Simulator is a project designed to simulate the scheduling of processes in a CPU and disk system. The goal of this project is to provide a platform for evaluating different scheduling algorithms and their impact on system performance.
+
+The main function of the project is implemented in C and serves as the entry point for the simulator. It takes command-line arguments to specify the number of processes, input file, quantum (time slice), and output trace file.
+
+Upon execution, the program performs the following steps:
+
+1. Command-Line Argument Validation:
+   - The program checks if the correct number of command-line arguments is provided. If not, an error message is displayed, explaining the correct usage.
+
+2. Parsing Command-Line Arguments:
+   - The program extracts and converts the command-line arguments to the appropriate data types for further processing.
+   
+3. Random Number Generation:
+   - The random number generator is seeded to ensure randomization in subsequent operations.
+
+4. Processes Data Generation:
+   - The program generates data for the specified number of processes and saves it to an input file. This data includes information about each process, such as its arrival time, burst time, and priority.
+
+5. Input File Reading:
+   - The input file containing the generated process data is opened for reading.
+
+6. Memory Allocation:
+   - Memory is allocated to hold an array of process structures and a process simulator object.
+
+7. Process Data Reading:
+   - The program reads the process data from the input file and populates the array of process structures with the corresponding information.
+
+8. Process Simulator Creation:
+   - The process simulator object is created, taking the array of process structures, the number of processes, and the quantum as parameters.
+
+9. Process Simulation:
+   - The simulator executes the process scheduling algorithm, simulating the processes' execution on the CPU and disk. The output of the simulation, including the scheduling trace, is saved to the specified output trace file.
+
+10. Algorithm Evaluation:
+    - After the simulation completes, the algorithm's performance and efficiency may be evaluated using appropriate metrics. However, the specific details of the evaluation are not provided in the given code snippet.
+
+11. Memory Deallocation:
+    - All dynamically allocated memory, including the process simulator object and the array of process structures, is freed to prevent memory leaks.
+
+The Process Scheduling Simulator project allows for easy experimentation and evaluation of different scheduling algorithms. By modifying the input parameters, such as the number of processes and quantum, and analyzing the generated trace file, users can gain insights into how different scheduling algorithms impact system performance and make informed decisions about process scheduling strategies.
+*/

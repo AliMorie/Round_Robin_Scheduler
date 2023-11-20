@@ -1,4 +1,7 @@
 /// @file Evaluation.h
+///	@brief The "evaluateAlgo.h" header file declares a function EvaluateAlgo that evaluates an algorithm by
+///		running simulations with different quantum values.
+/// @date 11/9/2023
 
 #ifndef UNTITLED_EVALUATION_H
 #define UNTITLED_EVALUATION_H

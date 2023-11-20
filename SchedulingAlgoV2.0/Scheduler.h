@@ -1,4 +1,6 @@
 /// @file Scheduler.h
+///	@brief The "Scheduler.h" header file declares several functions related to process scheduling and simulation.
+/// @date 11/9/2023
 
 #ifndef SCHEDULER_H
 #define SCHEDULER_H
@@ -37,6 +39,7 @@
 /// @note The runCPUProcess() function assumes that the queues (CPUDevice, CPUScheduler, DiskScheduler, DiskDevice)
 /// of the ProcessSimulator have been initialized properly.
 void runCPUProcess(ProcessSimulator* simulator, FILE* outputFile);
+
 /// Simulates the execution of processes in the ProcessSimulator.
 ///
 /// This function simulates the execution of processes in the ProcessSimulator by continuously checking and
@@ -131,4 +134,5 @@ void scheduleDiskProcess(ProcessSimulator* simulator, Process_Struct process);
 /// @param value The double value to be rounded.
 /// @return The rounded integer value.
 int roundTime(double value);
+
 #endif // SCHEDULER_H

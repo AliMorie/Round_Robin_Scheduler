@@ -1,4 +1,7 @@
 /// @file DataGenerator.h
+///	@brief The "DataGenerator.h" header file declares several functions related to data generation and random
+///		   number generation. These functions are as follows:
+/// @date 11/9/2023
 
 #ifndef DATA_GENERATOR_H
 #define DATA_GENERATOR_H
