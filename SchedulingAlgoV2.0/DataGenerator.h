@@ -41,6 +41,14 @@ int generateLogNormal(double mean, double stddev);
 /// The generated data is written to the specified output file in the format:
 /// "processID fileId arrivalTime cpuTime diskTime".
 ///
+///	## System Calls and Returns
+///	1. open: Opens the output file for writing.
+///		- Returns: If the file opening is successful, fopen returns a pointer to the FILE structure representing the
+///		  opened file. If it fails to open the file, it returns NULL.
+///	2. fprintf: Writes formatted data to the output file.
+///	3. fclose: Closes the output file.
+///		- Returns: fclose returns 0 on success and EOF (End-of-File) if an error occurs while closing the file.
+
 /// @param inputFile The name of the output file to write the process data.
 /// @param numProcesses The number of processes to generate data for.
 /// @param fileId The ID of the file associated with the processes.

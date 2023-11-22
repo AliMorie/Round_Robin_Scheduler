@@ -23,18 +23,26 @@
 /// with the read values. Each line in the source file represents a process and is expected to
 /// follow the format: "processID fileID arrivalTime CPUTime diskTime".
 ///
+/// ## System Calls:
+///	1. **fprintf:** Writes formatted data to the output file.
+///	2. **fclose:** Closes the output file.
+///		- **Returns:** fclose returns 0 on success and EOF (End-of-File) if an error occurs while closing the file.
+///
 /// @param sourceFile A pointer to the source file from which the process data will be read.
 /// @param processes An array of Process_Struct where the read process data will be stored.
 /// @param numProcesses The number of processes to read from the file.
 ///
 /// @return 1 if the reading and populating process was successful, 0 if there was a memory allocation failure
 ///         or an issue with closing the source file.
-int readProcessesData(FILE* sourceFile, Process_Struct* processes, const int numProcesses);
+int readProcessesData(FILE* sourceFile, Process_Struct* processes, int numProcesses);
 
 /// Initializes a queue structure.
 ///
 /// This function initializes a Queue structure by allocating memory for the processes array
 /// and setting the front, rear, and size values.
+///
+/// ## System Calls
+///    1. **malloc:** Returns a pointer to the allocated memory block or NULL if the allocation fails.
 ///
 /// @param queue A pointer to the Queue structure to be initialized.
 /// @param numProcesses The number of processes in the queue.
@@ -49,7 +57,7 @@ void initQueue(Queue* queue, int numProcesses);
 /// @param simulator A pointer to the ProcessSimulator.
 /// @param processes An array of Process_Struct to be enqueued.
 /// @param numProcesses The number of processes in the array.
-void enqueueArrivalQueue(ProcessSimulator* simulator, const Process_Struct* processes, const int numProcesses);
+void enqueueArrivalQueue(ProcessSimulator* simulator, const Process_Struct* processes, int numProcesses);
 
 
 /// Creates a ProcessSimulator instance.
@@ -61,16 +69,17 @@ void enqueueArrivalQueue(ProcessSimulator* simulator, const Process_Struct* proc
 /// @param processes An array of Process_Struct representing the processes.
 /// @param numProcesses The number of processes in the array.
 /// @param quantum The quantum value for the simulator.
-void createSimulator(
-    ProcessSimulator* simulator,
-    const Process_Struct* processes,
-    const int numProcesses,
-    const int quantum);
+void createSimulator(ProcessSimulator* simulator, const Process_Struct* processes, int numProcesses, int quantum);
 
 
 /// Clears the content of a file.
 ///
 /// This function clears the content of a file by opening it in write mode and immediately closing it.
+///
+/// ## System Calls:
+///	1. **fprintf:** Writes formatted data to the output file.
+///	2. **fclose:** Closes the output file.
+///		- **Returns:** fclose returns 0 on success and EOF (End-of-File) if an error occurs while closing the file.
 ///
 /// @param fileName The name of the file to be cleared.
 void clearFile(const char fileName[15]);

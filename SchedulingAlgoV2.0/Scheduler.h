@@ -46,32 +46,33 @@ void runCPUProcess(ProcessSimulator* simulator, FILE* outputFile);
 /// running processes on the CPU and Disk devices, scheduling processes from the arrival queue and CPU scheduler,
 /// and updating the clock time. Process metrics are logged to the output trace file.
 ///
+/// The `simulateProcesses()` function performs the following steps:
+///		1. Determines the output trace file name. If the `outputTraceFile` parameter is NULL, "log.csv" is used as the
+///		   default file name.
+///		2. Tries to open the output trace file in append mode. If the file cannot be opened, an error message is
+///		   displayed, and the function returns.
+///		3. Enters a while loop that continues until all queues (ArrivalQueue, CPUScheduler, CPUDevice, DiskDevice) are
+///        empty.
+///		4. Inside the while loop, the following actions are performed:
+///			- Checks and enqueues processes from the Arrival Queue to the CPU Scheduler if their arrival time is less
+///		      than or equal to the current clock time.
+///			- Checks and runs processes on the CPU by calling the `runCPUProcess()` function if the CPU device queue is
+///		      not empty.
+///			- Checks and runs processes on the Disk by calling the `runDiskProcess()` function if the Disk device queue
+///			  is not empty.
+///			- Schedules processes from the CPU Scheduler to the CPU by dequeuing processes and enqueuing them to the CPU
+///			  Device queue if the CPU Device queue is empty and the CPU Scheduler queue is not empty.
+///			- Schedules processes from the Disk Scheduler to the Disk by dequeuing a process and enqueuing it to the
+///			  Disk Device queue if the Disk Device queue is empty and the Disk Scheduler queue is not empty.
+///			- Increments the clock time of the simulator by one.
+///		5. Once the while loop exits (all queues are empty), the output trace file is closed.
+///		6. If the output trace file was successfully generated, a success message.
+///
+/// ## System Calls
+/// 1. **fopen:** Returns a pointer to the FILE structure representing the opened file or NULL if an error occurs.
+///
 /// @param simulator A pointer to the ProcessSimulator.
 /// @param outputTraceFile The output trace file path. If NULL, "log.csv" is used as the default file name.
-///
-/// The `simulateProcesses()` function performs the following steps:
-/// 1. Determines the output trace file name. If the `outputTraceFile` parameter is NULL, "log.csv" is used as the
-/// default file name.
-/// 2. Tries to open the output trace file in append mode. If the file cannot be opened, an error message is displayed,
-/// and the function returns.
-/// 3. Enters a while loop that continues until all queues (ArrivalQueue, CPUScheduler, CPUDevice, DiskDevice) are
-/// empty.
-/// 4. Inside the while loop, the following actions are performed:
-///     - Checks and enqueues processes from the Arrival Queue to the CPU Scheduler if their arrival time is less than
-///     or equal to the current clock time.
-///     - Checks and runs processes on the CPU by calling the `runCPUProcess()` function if the CPU device queue is not
-///     empty.
-///     - Checks and runs processes on the Disk by calling the `runDiskProcess()` function if the Disk device queue is
-///     not empty.
-///     - Schedules processes from the CPU Scheduler to the CPU by dequeuing processes and enqueuing them to the CPU
-///     Device queue
-///       if the CPU Device queue is empty and the CPU Scheduler queue is not empty.
-///     - Schedules processes from the Disk Scheduler to the Disk by dequeuing a process and enqueuing it to the Disk
-///     Device queue
-///       if the Disk Device queue is empty and the Disk Scheduler queue is not empty.
-///     - Increments the clock time of the simulator by one.
-/// 5. Once the while loop exits (all queues are empty), the output trace file is closed.
-/// 6. If the output trace file was successfully generated, a success message
 /// Returns the minimum value between two integers.
 void simulateProcesses(ProcessSimulator* simulator, const char* outputTraceFile);
 

@@ -11,6 +11,7 @@
 /// This function evaluates an algorithm by running simulations with different quantum values.
 /// It performs the following steps:
 ///
+/// ## Data Flow
 /// 1. Generates input trace files using the `generateProcessesData` function.
 ///    The number of trace files and the number of processes per file are pre-defined constants.
 ///    The trace files are named "trace1.txt" to "trace5.txt".
@@ -44,6 +45,15 @@
 /// The function evaluates the algorithm's performance by running simulations with different quantum values and logging
 /// the results. The results are stored in the log file "log.csv" in CSV format, with each row representing a
 /// combination of quantum value, trace file ID, turnaround time, and waiting time.
+///
+/// ## System Calls:
+///	1.time: Retrieves the current time in seconds since the Epoch (January 1st, 1970).
+///	2. **fprintf:** Writes formatted data to the output file.
+///	3. **fopen:** Returns a pointer to the FILE structure representing the opened file or NULL if an error occurs.
+///	4. **fclose:** Closes the output file.
+///		- **Returns:** fclose returns 0 on success and EOF (End-of-File) if an error occurs while closing the file.
+/// 5. **malloc:** Returns a pointer to the allocated memory block or NULL if the allocation fails.
+/// 6. **free:** Free the memory allocated for the passed object.
 ///
 /// @note The function assumes that the necessary functions (`generateProcessesData`, `clearFile`, `readProcessesData`,
 /// `createSimulator`, `simulateProcesses`) are defined and implemented correctly.

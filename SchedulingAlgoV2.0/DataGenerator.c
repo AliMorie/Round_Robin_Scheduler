@@ -7,14 +7,14 @@
 #include "DataGenerator.h"
 #include "Helper.h"
 
-int roundToNearestInteger(double value)
+int roundToNearestInteger(const double value)
 {
     return (int)(value + 0.5);
 }
 
-int generatePoissonArrival(double lambda)
+int generatePoissonArrival(const double lambda)
 {
-    double L = exp(-lambda);
+    const double l = exp(-lambda);
     double p = 1.0;
     int k = 0;
     double arrivalTime = 0.0;
@@ -24,7 +24,7 @@ int generatePoissonArrival(double lambda)
     {
         k++;
         p *= (double)rand() / (double)RAND_MAX;
-    } while (p > L);
+    } while (p > l);
 
     arrivalTime = (double)k - 1.0;
 
@@ -32,13 +32,13 @@ int generatePoissonArrival(double lambda)
     return roundToNearestInteger(arrivalTime);
 }
 
-int generateLogNormal(double mean, double stddev)
+int generateLogNormal(const double mean, const double stddev)
 {
-    double mu = log(mean * mean / sqrt(stddev * stddev + mean * mean));
-    double sigma = sqrt(log(1.0 + stddev * stddev / (mean * mean)));
+    const double mu = log(mean * mean / sqrt(stddev * stddev + mean * mean));
+    const double sigma = sqrt(log(1.0 + stddev * stddev / (mean * mean)));
 
     // Generate a random value from the log-normal distribution
-    double z = mu + sigma * (double)rand() / (double)RAND_MAX;
+    const double z = mu + sigma * (double)rand() / (double)RAND_MAX;
     const double value = round(exp(z));
 
     // Round the generated value to the nearest integer
