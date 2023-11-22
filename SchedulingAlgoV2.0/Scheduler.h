@@ -23,7 +23,7 @@
 ///     - Updates the turnAroundTime of the process by subtracting its arrival time from the current clock value.
 ///     - Updates the waitingTime of the process by subtracting its CPU time from its turnAroundTime.
 ///     - Logs the processing details and other process metrics (quantum value, file ID, turnAroundTime, and
-///     waitingTime)
+///       waitingTime)
 ///       to the output file using the fprintf() function.
 /// 4. Checks if the current process has used at least 50% of its CPU time or if its disk time is zero.
 ///    If so, the process is considered to be in the waiting state. The following actions are performed:
@@ -31,13 +31,13 @@
 ///     - Decrements the remainingCPUTime of the process by the timeSlice value.
 ///     - Enqueues the process back into the CPU device queue.
 /// 5. If the above conditions are not met, it means the process has finished its CPU time slice.
-///    The following actions are performed:
+///       The following actions are performed:
 ///     - Updates the state of the process to READY.
 ///     - Enqueues the process into the disk device queue.
 /// 6. Advances the clock of the simulator by the timeSlice value.
 ///
 /// @note The runCPUProcess() function assumes that the queues (CPUDevice, CPUScheduler, DiskScheduler, DiskDevice)
-/// of the ProcessSimulator have been initialized properly.
+///		  of the ProcessSimulator have been initialized properly.
 void runCPUProcess(ProcessSimulator* simulator, FILE* outputFile);
 
 /// Simulates the execution of processes in the ProcessSimulator.
