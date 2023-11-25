@@ -82,7 +82,6 @@ void runDiskProcess(ProcessSimulator* simulator)
 {
     Process_Struct currentProcess = dequeue(&simulator->DiskDevice);
 
-    currentProcess.state = READY;
     currentProcess.diskTime = 0;
     simulator->clock += 5;
     enqueueCPU(simulator, currentProcess);

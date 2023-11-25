@@ -12,10 +12,11 @@
 
 void EvaluateAlgo()
 {
+    const char logFIle[15] = "log.csv";
     const int numTraceFiles = 5;
     const int numProcesses = 50;
     const int minQuantum = 1;
-    const int maxQuantum = 10;
+    const int maxQuantum = 30;
 
     char traceFileNames[5][20] = {"trace1.txt", "trace2.txt", "trace3.txt", "trace4.txt", "trace5.txt"};
 
@@ -29,7 +30,7 @@ void EvaluateAlgo()
     }
 
     // Clear the previously logged file So that we can log the new ones.
-    clearFile("log.csv");
+    clearFile(logFIle);
 
     // Open the log file for writing
     FILE* file = fopen("log.csv", "w");
