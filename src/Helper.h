@@ -1,8 +1,7 @@
 /// @file Helper.h
-/// @details The "helper.h" header file provides declarations for various helper functions used in the process
+/// @brief The "helper.h" header file provides declarations for various helper functions used in the process
 /// scheduling simulation. These functions assist in tasks such as reading process data, initializing queues,
 /// enqueuing and dequeuing processes, creating a process simulator, and clearing file content.
-///
 ///	@author **Ali Merie**
 ///	@date 	11/22/2023
 
