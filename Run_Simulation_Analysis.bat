@@ -45,7 +45,7 @@ pip install -r requirements.txt
 REM Run the Python script
 python Plot_Data_1.py
 python Plot_Data_2.py
-python Prnt_Tables.py
+python Print_Tables.py
 
 REM Keep the Command Prompt window open until a key is pressed
 pause
