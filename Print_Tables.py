@@ -1,43 +1,21 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 from tabulate import tabulate
 
-# Read the CSV file and load the dataset
+# Read the evaluation results
 df = pd.read_csv('./log.csv')
 
-# Group the entries by quantum value and calculate the average waiting time and completion time for each quantum value
-grouped = df.groupby('quantum').mean()
+# Average the waiting time and completion (turnaround) time of all
+# processes for each quantum value tested in the evaluation
+averages = df.groupby('quantum')[['waitingTime', 'turnAroundTime']].mean().reset_index()
+averages.columns = ['Quantum', 'Average Waiting Time', 'Average Completion Time']
 
-# Create an empty DataFrame to store the averaged results
-averaged_results = pd.DataFrame(columns=['Quantum', 'Average Waiting Time', 'Average Completion Time'])
-
-# Iterate over the quantum values
-for quantum in range(1, 11):
-    # Select the entries for the current quantum value
-    quantum_entries = df[df['quantum'] == quantum]
-
-    # Initialize variables to store the sum of waiting time and completion time for 5 entries
-    waiting_sum = 0
-    completion_sum = 0
-
-    # Iterate over the entries in groups of 5
-    for i in range(0, len(quantum_entries), 5):
-        # Select the 5 entries for averaging
-        entries = quantum_entries[i:i+5]
-
-        # Calculate the sum of waiting time and completion time for the selected entries
-        waiting_sum += entries['waitingTime'].sum()
-        completion_sum += entries['turnAroundTime'].sum()
-
-    # Calculate the average waiting time and completion time for the current quantum value
-    avg_waiting_time = waiting_sum / len(quantum_entries)
-    avg_completion_time = completion_sum / len(quantum_entries)
-
-    # Append the averaged results to the DataFrame
-    averaged_results = pd.concat([averaged_results, pd.DataFrame({'Quantum': quantum, 'Average Waiting Time': avg_waiting_time, 'Average Completion Time': avg_completion_time}, index=[0])], ignore_index=True)
-
-# Format the tables
-waiting_time_table = tabulate(averaged_results[['Quantum', 'Average Waiting Time']], headers='keys', tablefmt='fancy_grid')
-completion_time_table = tabulate(averaged_results[['Quantum', 'Average Completion Time']], headers='keys', tablefmt='fancy_grid')
+# Format the tables. showindex=False hides pandas' row numbers,
+# which would otherwise appear as an extra unlabeled column
+waiting_time_table = tabulate(averages[['Quantum', 'Average Waiting Time']],
+                              headers='keys', tablefmt='fancy_grid', showindex=False)
+completion_time_table = tabulate(averages[['Quantum', 'Average Completion Time']],
+                                 headers='keys', tablefmt='fancy_grid', showindex=False)
 
 # Print the table for average waiting time
 print("Average Waiting Time:")
@@ -47,22 +25,20 @@ print(waiting_time_table)
 print("\nAverage Completion Time:")
 print(completion_time_table)
 
-# Create a new figure and axis
-fig, ax = plt.subplots()
 
-# Hide the axis and set the text output
-ax.axis('off')
-ax.text(0.5, 0.5, waiting_time_table, ha='center', va='center', fontsize=12)
+def save_table_image(table_text, file_name):
+    """Render a text table into a PNG image."""
+    fig, ax = plt.subplots()
+    ax.axis('off')
 
-# Save the figure as a PNG image
-fig.savefig('waiting_time_table.png', dpi=1000)
+    # A monospace font keeps the table's columns and borders aligned
+    ax.text(0.5, 0.5, table_text, ha='center', va='center', fontsize=12, family='monospace', linespacing=1.0)
 
-# Create a new figure and axis
-fig, ax = plt.subplots()
+    # bbox_inches='tight' fits the image to the table, so long tables aren't cut off
+    fig.savefig(file_name, dpi=200, bbox_inches='tight')
+    plt.close(fig)
 
-# Hide the axis and set the text output
-ax.axis('off')
-ax.text(0.5, 0.5, completion_time_table, ha='center', va='center', fontsize=12)
 
-# Save the figure as a PNG image
-fig.savefig('completion_time_table.png', dpi=1000)
+# Save both tables as PNG images
+save_table_image(waiting_time_table, 'waiting_time_table.png')
+save_table_image(completion_time_table, 'completion_time_table.png')
