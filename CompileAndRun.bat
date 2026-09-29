@@ -1,5 +1,15 @@
 @echo off
 
+:: Run from the folder containing this script, so relative paths
+:: work even if the script is started from another location
+cd /d "%~dp0"
+
+:: Create the input and output folders if they don't exist.
+:: Git doesn't track empty folders, so they can be missing
+:: from a fresh clone of the repository.
+if not exist "input" mkdir "input"
+if not exist "output" mkdir "output"
+
 :: Set the name of the output executable
 set output=Simulator
 
@@ -13,12 +23,11 @@ gcc -o "%output%" %sources% -lm
 if %errorlevel% == 0 (
     echo Compilation successful.
 
-    :: Run the application
+    REM Run the application
     echo Running the application
     .\Simulator 10 ".\input\input_file.txt" 3 ".\output\output.csv"
 ) else (
     echo Compilation failed.
 )
-
 
 pause
