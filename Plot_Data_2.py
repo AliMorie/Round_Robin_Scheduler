@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Read the CSV file
-df = pd.read_csv('./SchedulingAlgoV2.0/log.csv')
+df = pd.read_csv('./log.csv')
 
 # Calculate the average waiting time and completion time for each quantum value and file ID
 avg_waiting_time = df.groupby(['quantum', 'fileID'])['waitingTime'].mean().reset_index()
